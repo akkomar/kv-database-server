@@ -28,15 +28,10 @@ class KvDatabaseServer extends HttpServer {
 class DataController @Inject()(data: DataStore) extends Controller {
 
   get("/get") { request: GetRequest =>
-    println(request)
-    "get"
     data.get(request.key)
   }
 
   put("/set") { request: Request =>
-    println(request.params)
-    request.params.foreach(param => println(param._1 + param._2))
-
     val keyToSetOption = request.params.headOption
 
     keyToSetOption match {
